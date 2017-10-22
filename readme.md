@@ -3,7 +3,7 @@
 An implementation of [abstract-random-access](https://www.npmjs.com/package/abstract-random-access) to access content via http/s.
 Providing the same interface as [random-access-file](https://www.npmjs.com/package/random-access-file) and [random-access-memory](https://www.npmjs.com/package/random-access-memory).
 
-This implementation is intended as a drop-in replacement for random-access-file or random-access-memory in the dat-storage configuration. You might want to look at random-access-http
+This implementation is intended as a drop-in replacement for random-access-file or random-access-memory in the dat-storage configuration. You might want to look at [random-access-http](https://www.npmjs.com/package/random-access-memory) for an alternative implementation to see if it better suits your needs.
 
 ## Installation
 
