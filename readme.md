@@ -9,11 +9,28 @@ Providing the same interface as [random-access-file](https://www.npmjs.com/packa
 npm install random-access-http --save
 ```
 
+## Basic Example
+
+```js
+var raHttp = require('random-access-http')
+
+var file = raHttp('/readme.md', { url: 'https://raw.githubusercontent.com/e-e-e/random-access-http/master/' })
+
+file.read(100, 200, (err, data) => {
+  if (err) {
+    console.log('Something went wrong!')
+    console.log(err)
+    return
+  }
+  console.log(data.toString())
+})
+```
+
 ## API
 
 #### var file = raHttp(file, options)
 
-Open a new random access http connection.
+Open a new random access http file connection.
 
 Options include:
 ```js
