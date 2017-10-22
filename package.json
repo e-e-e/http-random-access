@@ -1,5 +1,5 @@
 {
-  "name": "random-access-http",
+  "name": "http-random-access",
   "version": "1.0.0",
   "description": "A random access interface for files served over http",
   "main": "index.js",

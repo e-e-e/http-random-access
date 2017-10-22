@@ -1,20 +1,22 @@
-# random-access-http
+# http-random-access
 
 An implementation of [abstract-random-access](https://www.npmjs.com/package/abstract-random-access) to access content via http/s.
 Providing the same interface as [random-access-file](https://www.npmjs.com/package/random-access-file) and [random-access-memory](https://www.npmjs.com/package/random-access-memory).
 
+This implementation is intended as a drop-in replacement for random-access-file or random-access-memory in the dat-storage configuration. You might want to look at random-access-http
+
 ## Installation
 
 ```
-npm install random-access-http --save
+npm install http-random-access --save
 ```
 
 ## Basic Example
 
 ```js
-var raHttp = require('random-access-http')
+var raHttp = require('http-random-access')
 
-var file = raHttp('/readme.md', { url: 'https://raw.githubusercontent.com/e-e-e/random-access-http/master/' })
+var file = raHttp('/readme.md', { url: 'https://raw.githubusercontent.com/e-e-e/http-random-access/master/' })
 
 file.read(100, 200, (err, data) => {
   if (err) {
