@@ -1,9 +1,9 @@
 var axios = require('axios')
 var Abstract = require('abstract-random-access')
 var inherits = require('inherits')
-var path = require('path')
 var http = require('http')
 var https = require('https')
+var Buffer = require('Buffer')
 
 var Store = function (filename, options) {
   if (!(this instanceof Store)) return new Store(filename, options)
@@ -11,14 +11,14 @@ var Store = function (filename, options) {
   this.axios = axios.create({
     baseURL: options.url,
     timeout: 60000,
-    //keepAlive pools and reuses TCP connections, so it's faster
+    // keepAlive pools and reuses TCP connections, so it's faster
     httpAgent: new http.Agent({ keepAlive: true }),
     httpsAgent: new https.Agent({ keepAlive: true }),
-    //follow up to 10 HTTP 3xx redirects
+    // follow up to 10 HTTP 3xx redirects
     maxRedirects: 10,
     maxContentLength: 50 * 1000 * 1000 // cap at 50MB
   })
-  this.url = options.url,
+  this.url = options.url
   this.file = filename
   this.verbose = !!options.verbose
   inherits(Store, Abstract)
@@ -29,11 +29,11 @@ Store.prototype._open = function (callback) {
   this.axios.head(this.file)
     .then((response) => {
       if (this.verbose) console.log('Received headers from server')
-      const accepts = response.headers['accept-ranges'];
-      if(accepts && accepts.toLowerCase().indexOf('bytes') !== -1) {
+      const accepts = response.headers['accept-ranges']
+      if (accepts && accepts.toLowerCase().indexOf('bytes') !== -1) {
         return callback(null)
       }
-      return callback(new Error ('Accept-Ranges does not include "bytes"'))
+      return callback(new Error('Accept-Ranges does not include "bytes"'))
     })
     .catch((err) => {
       if (this.verbose) console.log('Error opening', this.file, '-', err)
@@ -49,7 +49,7 @@ Store.prototype._read = function (offset, length, callback) {
   this.axios.get(this.file, { headers: headers })
     .then((response) => {
       if (this.verbose) console.log('read', JSON.stringify(response.headers, null, 2))
-      callback(null, response.data)
+      callback(null, Buffer.from(response.data))
     })
     .catch((err) => {
       if (this.verbose) {
