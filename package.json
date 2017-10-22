@@ -1,0 +1,23 @@
+{
+  "name": "random-access-http",
+  "version": "1.0.0",
+  "description": "A random access interface for files served over http",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "random-access"
+  ],
+  "author": "Benjamin Forster",
+  "license": "MIT",
+  "dependencies": {
+    "abstract-random-access": "^1.1.2",
+    "axios": "^0.17.0",
+    "inherits": "^2.0.3"
+  },
+  "devDependencies": {
+    "standard": "^10.0.3"
+  }
+}
