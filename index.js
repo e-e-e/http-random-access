@@ -9,6 +9,7 @@ var Store = function (filename, options) {
   Abstract.call(this)
   this.axios = axios.create({
     baseURL: options.url,
+    responseType: 'arraybuffer',
     timeout: 60000,
     // keepAlive pools and reuses TCP connections, so it's faster
     httpAgent: new http.Agent({ keepAlive: true }),
