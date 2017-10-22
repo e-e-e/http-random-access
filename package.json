@@ -1,6 +1,6 @@
 {
   "name": "http-random-access",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A random access interface for files served over http",
   "main": "index.js",
   "scripts": {
