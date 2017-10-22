@@ -2,12 +2,21 @@ var axios = require('axios')
 var Abstract = require('abstract-random-access')
 var inherits = require('inherits')
 var path = require('path')
+var http = require('http')
+var https = require('https')
 
 var Store = function (filename, options) {
   if (!(this instanceof Store)) return new Store(filename, options)
   Abstract.call(this)
   this.axios = axios.create({
     baseURL: options.url,
+    timeout: 60000,
+    //keepAlive pools and reuses TCP connections, so it's faster
+    httpAgent: new http.Agent({ keepAlive: true }),
+    httpsAgent: new https.Agent({ keepAlive: true }),
+    //follow up to 10 HTTP 3xx redirects
+    maxRedirects: 10,
+    maxContentLength: 50 * 1000 * 1000 // cap at 50MB
   })
   this.url = options.url,
   this.file = filename
