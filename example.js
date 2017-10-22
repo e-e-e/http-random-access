@@ -1,6 +1,6 @@
 var raHttp = require('./')
 
-var file = raHttp('/readme.md', { url: 'https://raw.githubusercontent.com/e-e-e/random-access-http/master/' })
+var file = raHttp('/readme.md', { url: 'https://raw.githubusercontent.com/e-e-e/http-random-access/master/' })
 
 file.read(2, 10, (err, data) => {
   if (err) {

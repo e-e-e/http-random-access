@@ -12,6 +12,10 @@
   ],
   "author": "Benjamin Forster",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/e-e-e/http-random-access.git"
+  },
   "dependencies": {
     "abstract-random-access": "^1.1.2",
     "axios": "^0.17.0",
