@@ -3,7 +3,6 @@ var Abstract = require('abstract-random-access')
 var inherits = require('inherits')
 var http = require('http')
 var https = require('https')
-var Buffer = require('Buffer')
 
 var Store = function (filename, options) {
   if (!(this instanceof Store)) return new Store(filename, options)
