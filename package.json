@@ -17,9 +17,8 @@
     "url": "git+https://github.com/e-e-e/http-random-access.git"
   },
   "dependencies": {
-    "abstract-random-access": "^1.1.2",
     "axios": "^0.17.0",
-    "inherits": "^2.0.3"
+    "random-access-storage": "^1.1.1"
   },
   "devDependencies": {
     "standard": "^10.0.3"
