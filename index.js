@@ -20,10 +20,18 @@ if (isNode) {
 }
 
 var randomAccessHttp = function (filename, options) {
-  var _axios = axios.create(Object.assign({
-    baseURL: options.url
-  }, defaultOptions))
-  var url = options.url
+  if (!filename) {
+    throw new Error('Expect first argument to be a valid URL or a relative path, with url set in options')
+  }
+  var url = options && options.url
+  var axiosConfig = Object.assign({}, defaultOptions)
+  if (options) {
+    if (url) axiosConfig.baseURL = url
+    if (options.timeout) axiosConfig.timeout = options.timeout
+    if (options.maxRedirects) axiosConfig.maxRedirects = options.maxRedirects
+    if (options.maxContentLength) axiosConfig.maxContentLength = options.maxContentLength
+  }
+  var _axios = axios.create(axiosConfig)
   var file = filename
   var verbose = !!(options && options.verbose)
 
