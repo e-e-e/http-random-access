@@ -1,5 +1,7 @@
 # http-random-access
 
+[![Build Status](https://travis-ci.org/e-e-e/http-random-access.svg?branch=master)](https://travis-ci.org/e-e-e/http-random-access) [![Coverage Status](https://coveralls.io/repos/github/e-e-e/http-random-access/badge.svg?branch=master)](https://coveralls.io/github/e-e-e/http-random-access?branch=master)
+
 An implementation of [abstract-random-access](https://www.npmjs.com/package/abstract-random-access) to access content via http/s.
 Providing the same interface as [random-access-file](https://www.npmjs.com/package/random-access-file) and [random-access-memory](https://www.npmjs.com/package/random-access-memory).
 
