@@ -2,6 +2,7 @@ var axios = require('axios')
 var randomAccess = require('random-access-storage')
 var logger = require('./lib/logger')
 var isNode = require('./lib/is-node')
+var validUrl = require('./lib/valid-url')
 
 var defaultOptions = {
   responseType: 'arraybuffer',
@@ -20,10 +21,10 @@ if (isNode) {
 }
 
 var randomAccessHttp = function (filename, options) {
-  if (!filename) {
+  var url = options && options.url
+  if (!filename || (!validUrl(filename) && !validUrl(url))) {
     throw new Error('Expect first argument to be a valid URL or a relative path, with url set in options')
   }
-  var url = options && options.url
   var axiosConfig = Object.assign({}, defaultOptions)
   if (options) {
     if (url) axiosConfig.baseURL = url
