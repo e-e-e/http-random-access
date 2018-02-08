@@ -1,6 +1,7 @@
 var axios = require('axios')
 var randomAccess = require('random-access-storage')
 var logger = require('./lib/logger')
+var isNode = require('./lib/is-node')
 
 var defaultOptions = {
   responseType: 'arraybuffer',
@@ -10,7 +11,7 @@ var defaultOptions = {
   maxContentLength: 50 * 1000 * 1000 // cap at 50MB,
 }
 
-if (process !== undefined && process.release.name === 'node') {
+if (isNode) {
   var http = require('http')
   var https = require('https')
   // keepAlive pools and reuses TCP connections, so it's faster
@@ -24,7 +25,7 @@ var randomAccessHttp = function (filename, options) {
   }, defaultOptions))
   var url = options.url
   var file = filename
-  var verbose = !!options.verbose
+  var verbose = !!(options && options.verbose)
 
   return randomAccess({
     open: (req) => {
@@ -65,6 +66,11 @@ var randomAccessHttp = function (filename, options) {
     write: (req) => {
       // This is a dummy write function - does not write, but fails silently
       if (verbose) logger.log('trying to write', file, req.offset, req.data)
+      req.callback()
+    },
+    del: (req) => {
+      // This is a dummy del function - does not del, but fails silently
+      if (verbose) logger.log('trying to del', file, req.offset, req.size)
       req.callback()
     }
   })
